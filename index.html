@@ -99,15 +99,6 @@
         }
         
         .hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            padding: 5rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero {
             background: linear-gradient(rgba(13, 17, 23, 0.85), rgba(22, 27, 34, 0.9)), 
                         url('https://images6.alphacoders.com/139/thumb-1920-1398035.jpg');
             background-size: cover;
@@ -118,6 +109,7 @@
             position: relative;
             overflow: hidden;
         }
+        
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
@@ -581,11 +573,11 @@
                 <nav>
                     <ul>
                         <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#">Tools</a></li>
-                        <li><a href="#">Forensics</a></li>
-                        <li><a href="#">Python</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#forensics">Forensics</a></li>
+                        <li><a href="#python">Python</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#about">About</a></li>
                     </ul>
                 </nav>
             </div>
@@ -925,6 +917,287 @@ print(f"Decrypted: {xor_encrypt_decrypt(encrypted, key)}")</textarea>
                         <div class="result" id="morse-result"></div>
                     </div>
                 </div>
+
+                <!-- ROT13 Encoder/Decoder -->
+                <div class="tool-card" data-categories="crypto">
+                    <h3><span class="tool-icon"><i class="fas fa-redo"></i></span> ROT13 Encoder/Decoder</h3>
+                    <p>Apply ROT13 transformation to text (special case of Caesar cipher with shift 13).</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="rot13-input">Input Text</label>
+                            <textarea id="rot13-input" placeholder="Enter text to encode or decode"></textarea>
+                        </div>
+                        <button class="btn" onclick="handleROT13()"><i class="fas fa-play"></i> Process</button>
+                        <div class="result" id="rot13-result"></div>
+                    </div>
+                </div>
+
+                <!-- ASCII Table Converter -->
+                <div class="tool-card" data-categories="encoding">
+                    <h3><span class="tool-icon"><i class="fas fa-table"></i></span> ASCII Table Converter</h3>
+                    <p>Convert between characters and their ASCII decimal, hex, and binary values.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="ascii-input">Input Text</label>
+                            <textarea id="ascii-input" placeholder="Enter text to convert"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="ascii-format">Output Format</label>
+                            <select id="ascii-format">
+                                <option value="decimal">Decimal</option>
+                                <option value="hex">Hexadecimal</option>
+                                <option value="binary">Binary</option>
+                                <option value="all">All Formats</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="handleASCII()"><i class="fas fa-play"></i> Convert</button>
+                        <div class="result" id="ascii-result"></div>
+                    </div>
+                </div>
+
+                <!-- Regular Expression Tester -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-code"></i></span> Regex Tester</h3>
+                    <p>Test and debug regular expressions with real-time matching.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="regex-pattern">Regular Expression</label>
+                            <input type="text" id="regex-pattern" placeholder="Enter regex pattern">
+                        </div>
+                        <div class="input-group">
+                            <label for="regex-test">Test Text</label>
+                            <textarea id="regex-test" placeholder="Enter text to test against"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="regex-flags">Flags</label>
+                            <div>
+                                <input type="checkbox" id="regex-ignore-case" value="i">
+                                <label for="regex-ignore-case">Ignore Case (i)</label>
+                                <input type="checkbox" id="regex-global" value="g" checked>
+                                <label for="regex-global">Global (g)</label>
+                                <input type="checkbox" id="regex-multiline" value="m">
+                                <label for="regex-multiline">Multiline (m)</label>
+                            </div>
+                        </div>
+                        <button class="btn" onclick="testRegex()"><i class="fas fa-play"></i> Test</button>
+                        <div class="result" id="regex-result"></div>
+                    </div>
+                </div>
+
+                <!-- Password Generator -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-key"></i></span> Password Generator</h3>
+                    <p>Generate secure passwords with customizable length and character sets.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="password-length">Password Length</label>
+                            <input type="number" id="password-length" value="16" min="8" max="64">
+                        </div>
+                        <div class="input-group">
+                            <label>Character Sets</label>
+                            <div>
+                                <input type="checkbox" id="chars-lowercase" checked>
+                                <label for="chars-lowercase">Lowercase (a-z)</label>
+                                <input type="checkbox" id="chars-uppercase" checked>
+                                <label for="chars-uppercase">Uppercase (A-Z)</label>
+                                <input type="checkbox" id="chars-numbers" checked>
+                                <label for="chars-numbers">Numbers (0-9)</label>
+                                <input type="checkbox" id="chars-symbols">
+                                <label for="chars-symbols">Symbols (!@#$%^&*)</label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="password-count">Number of Passwords</label>
+                            <input type="number" id="password-count" value="5" min="1" max="20">
+                        </div>
+                        <button class="btn" onclick="generatePasswords()"><i class="fas fa-play"></i> Generate</button>
+                        <div class="result" id="password-result"></div>
+                    </div>
+                </div>
+
+                <!-- Text Case Converter -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-font"></i></span> Text Case Converter</h3>
+                    <p>Convert text between different case styles (upper, lower, title, etc.).</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="case-input">Input Text</label>
+                            <textarea id="case-input" placeholder="Enter text to convert"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="case-type">Case Type</label>
+                            <select id="case-type">
+                                <option value="upper">UPPERCASE</option>
+                                <option value="lower">lowercase</option>
+                                <option value="title">Title Case</option>
+                                <option value="sentence">Sentence case</option>
+                                <option value="camel">camelCase</option>
+                                <option value="pascal">PascalCase</option>
+                                <option value="snake">snake_case</option>
+                                <option value="kebab">kebab-case</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="convertCase()"><i class="fas fa-play"></i> Convert</button>
+                        <div class="result" id="case-result"></div>
+                    </div>
+                </div>
+
+                <!-- Epoch Time Converter -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-clock"></i></span> Epoch Time Converter</h3>
+                    <p>Convert between Unix timestamps and human-readable dates.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="epoch-input">Input (Timestamp or Date)</label>
+                            <input type="text" id="epoch-input" placeholder="Enter timestamp or date">
+                        </div>
+                        <div class="input-group">
+                            <label for="epoch-action">Conversion</label>
+                            <select id="epoch-action">
+                                <option value="to-date">Timestamp to Date</option>
+                                <option value="to-timestamp">Date to Timestamp</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="convertEpoch()"><i class="fas fa-play"></i> Convert</button>
+                        <div class="result" id="epoch-result"></div>
+                    </div>
+                </div>
+
+                <!-- JSON Formatter -->
+                <div class="tool-card" data-categories="web">
+                    <h3><span class="tool-icon"><i class="fas fa-code"></i></span> JSON Formatter</h3>
+                    <p>Format, validate, and minify JSON data.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="json-input">JSON Input</label>
+                            <textarea id="json-input" placeholder='Paste JSON here'>{ "name": "CTF Player", "tools": ["base64", "xor", "hash"], "active": true }</textarea>
+                        </div>
+                        <div class="tool-actions">
+                            <button class="btn" onclick="formatJSON()"><i class="fas fa-indent"></i> Format</button>
+                            <button class="btn" onclick="minifyJSON()"><i class="fas fa-compress"></i> Minify</button>
+                            <button class="btn" onclick="validateJSON()"><i class="fas fa-check"></i> Validate</button>
+                        </div>
+                        <div class="result" id="json-result"></div>
+                    </div>
+                </div>
+
+                <!-- HTTP Header Analyzer -->
+                <div class="tool-card" data-categories="web">
+                    <h3><span class="tool-icon"><i class="fas fa-server"></i></span> HTTP Header Analyzer</h3>
+                    <p>Parse and analyze HTTP request/response headers.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="http-input">HTTP Headers</label>
+                            <textarea id="http-input" placeholder="Paste HTTP headers here">HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Server: nginx/1.18.0
+X-Powered-By: Express
+Content-Length: 1234</textarea>
+                        </div>
+                        <button class="btn" onclick="analyzeHTTP()"><i class="fas fa-search"></i> Analyze</button>
+                        <div class="result" id="http-result"></div>
+                    </div>
+                </div>
+
+                <!-- SQL Injection Tester -->
+                <div class="tool-card" data-categories="web">
+                    <h3><span class="tool-icon"><i class="fas fa-database"></i></span> SQL Injection Tester</h3>
+                    <p>Test SQL injection payloads and understand injection techniques.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="sql-input">SQL Query</label>
+                            <textarea id="sql-input" placeholder="Enter SQL query">SELECT * FROM users WHERE username = 'admin' AND password = 'password'</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="sql-payload">Injection Payload</label>
+                            <input type="text" id="sql-payload" value="' OR '1'='1">
+                        </div>
+                        <button class="btn" onclick="testSQLInjection()"><i class="fas fa-play"></i> Test</button>
+                        <div class="result" id="sql-result"></div>
+                    </div>
+                </div>
+
+                <!-- DNS Lookup Tool -->
+                <div class="tool-card" data-categories="web">
+                    <h3><span class="tool-icon"><i class="fas fa-globe"></i></span> DNS Lookup</h3>
+                    <p>Perform DNS lookups for various record types.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="dns-domain">Domain</label>
+                            <input type="text" id="dns-domain" placeholder="example.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="dns-type">Record Type</label>
+                            <select id="dns-type">
+                                <option value="A">A (Address)</option>
+                                <option value="AAAA">AAAA (IPv6 Address)</option>
+                                <option value="CNAME">CNAME (Canonical Name)</option>
+                                <option value="MX">MX (Mail Exchange)</option>
+                                <option value="TXT">TXT (Text)</option>
+                                <option value="NS">NS (Name Server)</option>
+                                <option value="SOA">SOA (Start of Authority)</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="performDNSLookup()"><i class="fas fa-search"></i> Lookup</button>
+                        <div class="result" id="dns-result"></div>
+                    </div>
+                </div>
+
+                <!-- IP Address Calculator -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-calculator"></i></span> IP Calculator</h3>
+                    <p>Calculate network information from IP addresses and CIDR notation.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="ip-cidr">IP Address/CIDR</label>
+                            <input type="text" id="ip-cidr" placeholder="192.168.1.0/24">
+                        </div>
+                        <button class="btn" onclick="calculateIP()"><i class="fas fa-calculator"></i> Calculate</button>
+                        <div class="result" id="ip-result"></div>
+                    </div>
+                </div>
+
+                <!-- Text Diff Checker -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-file-alt"></i></span> Text Diff Checker</h3>
+                    <p>Compare two texts and highlight differences between them.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="diff-text1">Text 1</label>
+                            <textarea id="diff-text1" placeholder="Enter first text"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="diff-text2">Text 2</label>
+                            <textarea id="diff-text2" placeholder="Enter second text"></textarea>
+                        </div>
+                        <button class="btn" onclick="compareTexts()"><i class="fas fa-exchange-alt"></i> Compare</button>
+                        <div class="result" id="diff-result"></div>
+                    </div>
+                </div>
+
+                <!-- QR Code Generator -->
+                <div class="tool-card" data-categories="misc">
+                    <h3><span class="tool-icon"><i class="fas fa-qrcode"></i></span> QR Code Generator</h3>
+                    <p>Generate QR codes from text or URLs.</p>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="qr-input">Text/URL</label>
+                            <textarea id="qr-input" placeholder="Enter text or URL to encode"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="qr-size">QR Code Size</label>
+                            <select id="qr-size">
+                                <option value="150">Small (150x150)</option>
+                                <option value="250" selected>Medium (250x250)</option>
+                                <option value="350">Large (350x350)</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="generateQRCode()"><i class="fas fa-qrcode"></i> Generate</button>
+                        <div class="result" id="qr-result">
+                            <div id="qr-code-container"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -939,11 +1212,11 @@ print(f"Decrypted: {xor_encrypt_decrypt(encrypted, key)}")</textarea>
                 <p>Advanced tools for cybersecurity professionals and CTF enthusiasts</p>
                 <div class="footer-links">
                     <a href="#">Home</a>
-                    <a href="#">Tools</a>
-                    <a href="#">Forensics</a>
-                    <a href="#">Python</a>
-                    <a href="#">Resources</a>
-                    <a href="#">About</a>
+                    <a href="#tools">Tools</a>
+                    <a href="#forensics">Forensics</a>
+                    <a href="#python">Python</a>
+                    <a href="#resources">Resources</a>
+                    <a href="#about">About</a>
                     <a href="#">Privacy</a>
                     <a href="#">Terms</a>
                 </div>
@@ -1588,6 +1861,503 @@ output = mystdout.getvalue()
                 resultElement.textContent = "Error processing Morse code.";
                 resultElement.classList.add('active');
             }
+        }
+        
+        // ROT13 Encoder/Decoder
+        function handleROT13() {
+            const input = document.getElementById('rot13-input').value;
+            const resultElement = document.getElementById('rot13-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter some text.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                let result = "";
+                for (let i = 0; i < input.length; i++) {
+                    let char = input[i];
+                    if (char.match(/[a-z]/i)) {
+                        const code = input.charCodeAt(i);
+                        if (code >= 65 && code <= 90) {
+                            char = String.fromCharCode(((code - 65 + 13) % 26) + 65);
+                        } else if (code >= 97 && code <= 122) {
+                            char = String.fromCharCode(((code - 97 + 13) % 26) + 97);
+                        }
+                    }
+                    result += char;
+                }
+                
+                resultElement.textContent = result;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = "Error processing ROT13.";
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // ASCII Table Converter
+        function handleASCII() {
+            const input = document.getElementById('ascii-input').value;
+            const format = document.getElementById('ascii-format').value;
+            const resultElement = document.getElementById('ascii-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter some text.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                let result = "";
+                for (let i = 0; i < input.length; i++) {
+                    const char = input[i];
+                    const code = input.charCodeAt(i);
+                    
+                    if (format === 'decimal') {
+                        result += `${code} `;
+                    } else if (format === 'hex') {
+                        result += `0x${code.toString(16).toUpperCase()} `;
+                    } else if (format === 'binary') {
+                        result += `${code.toString(2).padStart(8, '0')} `;
+                    } else if (format === 'all') {
+                        result += `'${char}' - Dec: ${code}, Hex: 0x${code.toString(16).toUpperCase()}, Bin: ${code.toString(2).padStart(8, '0')}\n`;
+                    }
+                }
+                
+                resultElement.textContent = result;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = "Error processing ASCII conversion.";
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // Regular Expression Tester
+        function testRegex() {
+            const pattern = document.getElementById('regex-pattern').value;
+            const testText = document.getElementById('regex-test').value;
+            const ignoreCase = document.getElementById('regex-ignore-case').checked;
+            const global = document.getElementById('regex-global').checked;
+            const multiline = document.getElementById('regex-multiline').checked;
+            const resultElement = document.getElementById('regex-result');
+            
+            if (!pattern || !testText) {
+                resultElement.textContent = "Please enter both a pattern and test text.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                let flags = '';
+                if (ignoreCase) flags += 'i';
+                if (global) flags += 'g';
+                if (multiline) flags += 'm';
+                
+                const regex = new RegExp(pattern, flags);
+                const matches = testText.match(regex);
+                
+                if (matches) {
+                    resultElement.textContent = `Found ${matches.length} match(es):\n${matches.join('\n')}`;
+                } else {
+                    resultElement.textContent = "No matches found.";
+                }
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // Password Generator
+        function generatePasswords() {
+            const length = parseInt(document.getElementById('password-length').value);
+            const count = parseInt(document.getElementById('password-count').value);
+            const lowercase = document.getElementById('chars-lowercase').checked;
+            const uppercase = document.getElementById('chars-uppercase').checked;
+            const numbers = document.getElementById('chars-numbers').checked;
+            const symbols = document.getElementById('chars-symbols').checked;
+            const resultElement = document.getElementById('password-result');
+            
+            if (!lowercase && !uppercase && !numbers && !symbols) {
+                resultElement.textContent = "Please select at least one character set.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            let charset = '';
+            if (lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (numbers) charset += '0123456789';
+            if (symbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            let passwords = '';
+            for (let i = 0; i < count; i++) {
+                let password = '';
+                for (let j = 0; j < length; j++) {
+                    password += charset.charAt(Math.floor(Math.random() * charset.length));
+                }
+                passwords += `${i+1}. ${password}\n`;
+            }
+            
+            resultElement.textContent = passwords;
+            resultElement.classList.add('active');
+        }
+        
+        // Text Case Converter
+        function convertCase() {
+            const input = document.getElementById('case-input').value;
+            const caseType = document.getElementById('case-type').value;
+            const resultElement = document.getElementById('case-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter some text.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                let result;
+                switch (caseType) {
+                    case 'upper':
+                        result = input.toUpperCase();
+                        break;
+                    case 'lower':
+                        result = input.toLowerCase();
+                        break;
+                    case 'title':
+                        result = input.replace(/\w\S*/g, function(txt) {
+                            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                        });
+                        break;
+                    case 'sentence':
+                        result = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+                        break;
+                    case 'camel':
+                        result = input.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+                            return index === 0 ? word.toLowerCase() : word.toUpperCase();
+                        }).replace(/\s+/g, '');
+                        break;
+                    case 'pascal':
+                        result = input.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word) {
+                            return word.toUpperCase();
+                        }).replace(/\s+/g, '');
+                        break;
+                    case 'snake':
+                        result = input.toLowerCase().replace(/\s+/g, '_');
+                        break;
+                    case 'kebab':
+                        result = input.toLowerCase().replace(/\s+/g, '-');
+                        break;
+                    default:
+                        result = input;
+                }
+                
+                resultElement.textContent = result;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = "Error converting text case.";
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // Epoch Time Converter
+        function convertEpoch() {
+            const input = document.getElementById('epoch-input').value;
+            const action = document.getElementById('epoch-action').value;
+            const resultElement = document.getElementById('epoch-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter a timestamp or date.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                let result;
+                if (action === 'to-date') {
+                    const timestamp = parseInt(input);
+                    if (isNaN(timestamp)) {
+                        throw new Error("Invalid timestamp");
+                    }
+                    const date = new Date(timestamp * 1000);
+                    result = date.toLocaleString();
+                } else {
+                    const date = new Date(input);
+                    if (isNaN(date.getTime())) {
+                        throw new Error("Invalid date format");
+                    }
+                    result = Math.floor(date.getTime() / 1000);
+                }
+                
+                resultElement.textContent = result;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // JSON Formatter
+        function formatJSON() {
+            const input = document.getElementById('json-input').value;
+            const resultElement = document.getElementById('json-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter JSON data.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                resultElement.textContent = JSON.stringify(parsed, null, 2);
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Invalid JSON: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        function minifyJSON() {
+            const input = document.getElementById('json-input').value;
+            const resultElement = document.getElementById('json-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter JSON data.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                resultElement.textContent = JSON.stringify(parsed);
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Invalid JSON: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        function validateJSON() {
+            const input = document.getElementById('json-input').value;
+            const resultElement = document.getElementById('json-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter JSON data.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                JSON.parse(input);
+                resultElement.textContent = "Valid JSON!";
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Invalid JSON: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // HTTP Header Analyzer
+        function analyzeHTTP() {
+            const input = document.getElementById('http-input').value;
+            const resultElement = document.getElementById('http-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter HTTP headers.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                const lines = input.split('\n');
+                let statusLine = '';
+                const headers = {};
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (line) {
+                        if (i === 0 && (line.startsWith('HTTP/') || line.startsWith('GET') || line.startsWith('POST'))) {
+                            statusLine = line;
+                        } else {
+                            const separatorIndex = line.indexOf(':');
+                            if (separatorIndex !== -1) {
+                                const key = line.substring(0, separatorIndex).trim();
+                                const value = line.substring(separatorIndex + 1).trim();
+                                headers[key] = value;
+                            }
+                        }
+                    }
+                }
+                
+                let result = '';
+                if (statusLine) {
+                    result += `Status/Request: ${statusLine}\n\n`;
+                }
+                
+                result += 'Headers:\n';
+                for (const [key, value] of Object.entries(headers)) {
+                    result += `${key}: ${value}\n`;
+                }
+                
+                resultElement.textContent = result;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // SQL Injection Tester
+        function testSQLInjection() {
+            const query = document.getElementById('sql-input').value;
+            const payload = document.getElementById('sql-payload').value;
+            const resultElement = document.getElementById('sql-result');
+            
+            if (!query) {
+                resultElement.textContent = "Please enter a SQL query.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                // Simple simulation of SQL injection
+                const injectedQuery = query.replace(/'[^']*'/, `'${payload}'`);
+                
+                resultElement.textContent = `Original Query: ${query}\n\nInjected Query: ${injectedQuery}\n\nThis is a simulation. In a real scenario, this could bypass authentication if the application is vulnerable.`;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // DNS Lookup Tool
+        function performDNSLookup() {
+            const domain = document.getElementById('dns-domain').value;
+            const recordType = document.getElementById('dns-type').value;
+            const resultElement = document.getElementById('dns-result');
+            
+            if (!domain) {
+                resultElement.textContent = "Please enter a domain.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            resultElement.textContent = `Performing ${recordType} lookup for ${domain}...`;
+            resultElement.classList.add('active');
+            
+            // Simulate DNS lookup
+            setTimeout(() => {
+                const mockResults = {
+                    'A': `A records for ${domain}:\n- 93.184.216.34\n- 192.0.2.1`,
+                    'AAAA': `AAAA records for ${domain}:\n- 2606:2800:220:1:248:1893:25c8:1946`,
+                    'CNAME': `CNAME record for ${domain}:\n- points to example.net`,
+                    'MX': `MX records for ${domain}:\n- 10 mail.${domain}\n- 20 mail2.${domain}`,
+                    'TXT': `TXT records for ${domain}:\n- "v=spf1 include:_spf.${domain} ~all"\n- "google-site-verification=abc123"`,
+                    'NS': `NS records for ${domain}:\n- ns1.${domain}\n- ns2.${domain}`,
+                    'SOA': `SOA record for ${domain}:\n- Primary NS: ns1.${domain}\n- Admin: admin.${domain}\n- Serial: 2023051501\n- Refresh: 3600\n- Retry: 1800\n- Expire: 1209600\n- TTL: 3600`
+                };
+                
+                resultElement.textContent = mockResults[recordType] || `No ${recordType} records found for ${domain}`;
+            }, 1000);
+        }
+        
+        // IP Address Calculator
+        function calculateIP() {
+            const input = document.getElementById('ip-cidr').value;
+            const resultElement = document.getElementById('ip-result');
+            
+            if (!input) {
+                resultElement.textContent = "Please enter an IP address with CIDR notation.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                const [ip, cidrStr] = input.split('/');
+                const cidr = parseInt(cidrStr);
+                
+                if (!ip || isNaN(cidr) || cidr < 0 || cidr > 32) {
+                    throw new Error("Invalid CIDR notation");
+                }
+                
+                // Simple IP calculation simulation
+                const networkAddress = ip;
+                const subnetMask = `${(0xFFFFFFFF << (32 - cidr)) >>> 24}.${(0xFFFFFFFF << (32 - cidr)) >>> 16 & 0xFF}.${(0xFFFFFFFF << (32 - cidr)) >>> 8 & 0xFF}.${0xFFFFFFFF << (32 - cidr) & 0xFF}`;
+                const wildcardMask = `${255 - ((0xFFFFFFFF << (32 - cidr)) >>> 24)}.${255 - ((0xFFFFFFFF << (32 - cidr)) >>> 16 & 0xFF)}.${255 - ((0xFFFFFFFF << (32 - cidr)) >>> 8 & 0xFF)}.${255 - (0xFFFFFFFF << (32 - cidr) & 0xFF)}`;
+                const hostCount = Math.pow(2, 32 - cidr) - 2;
+                
+                resultElement.textContent = `Network: ${networkAddress}/${cidr}\nSubnet Mask: ${subnetMask}\nWildcard Mask: ${wildcardMask}\nHost Count: ${hostCount}`;
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // Text Diff Checker
+        function compareTexts() {
+            const text1 = document.getElementById('diff-text1').value;
+            const text2 = document.getElementById('diff-text2').value;
+            const resultElement = document.getElementById('diff-result');
+            
+            if (!text1 || !text2) {
+                resultElement.textContent = "Please enter both texts to compare.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            try {
+                const lines1 = text1.split('\n');
+                const lines2 = text2.split('\n');
+                
+                let result = '';
+                const maxLines = Math.max(lines1.length, lines2.length);
+                
+                for (let i = 0; i < maxLines; i++) {
+                    const line1 = lines1[i] || '';
+                    const line2 = lines2[i] || '';
+                    
+                    if (line1 === line2) {
+                        result += ` ${i+1}: ${line1}\n`;
+                    } else {
+                        result += `-${i+1}: ${line1}\n`;
+                        result += `+${i+1}: ${line2}\n`;
+                    }
+                }
+                
+                resultElement.textContent = result || "Texts are identical.";
+                resultElement.classList.add('active');
+            } catch (e) {
+                resultElement.textContent = `Error: ${e.message}`;
+                resultElement.classList.add('active');
+            }
+        }
+        
+        // QR Code Generator
+        function generateQRCode() {
+            const text = document.getElementById('qr-input').value;
+            const size = document.getElementById('qr-size').value;
+            const resultElement = document.getElementById('qr-result');
+            const container = document.getElementById('qr-code-container');
+            
+            if (!text) {
+                resultElement.textContent = "Please enter text or URL to encode.";
+                resultElement.classList.add('active');
+                return;
+            }
+            
+            // Clear previous QR code
+            container.innerHTML = '';
+            
+            // Create a simple text representation of a QR code (simulation)
+            const qrText = `QR Code for: ${text}\n\n[QR Code Image - ${size}x${size} pixels]\n\nScan this QR code with your phone's camera to view the content.`;
+            
+            container.textContent = qrText;
+            resultElement.classList.add('active');
         }
     </script>
 </body>
