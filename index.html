@@ -98,17 +98,21 @@
             color: white;
         }
         
-        .hero {
-            background: linear-gradient(rgb(17 20 24 / 0%), rgba(22, 27, 34, 0.9)),
-                        url('<iframe title="vimeo-player" src="https://player.vimeo.com/video/1024872964?h=7c5b7485e5" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>');
-            background-size: cover;
-            background-position: center;
-            padding: 10rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
+     <section class="hero">
+  <div class="video-background">
+    <iframe 
+      src="https://player.vimeo.com/video/1024872964?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hero-content">
+    <h1>Your Hero Title</h1>
+    <p>Your subtitle or call to action</p>
+  </div>
+</section>
+
         
         .hero h2 {
             font-size: 3rem;
